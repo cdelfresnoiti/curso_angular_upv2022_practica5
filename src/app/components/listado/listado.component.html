@@ -11,7 +11,8 @@
       <img [src]="usuario.avatar" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">
-          {{ usuario.first_name }} {{ usuario.last_name }}
+          {{ usuario.first_name | uppercase }}
+          {{ usuario.last_name | uppercase }}
         </h5>
         <p class="card-text">
           {{ usuario.email }}
