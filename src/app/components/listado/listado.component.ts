@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListadoComponent implements OnInit {
   _termino = '';
 
-  @Input() get termino() {
+  @Input() get termino(): string {
     return this._termino;
   }
 
