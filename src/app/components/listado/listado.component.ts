@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -105,7 +106,7 @@ export class ListadoComponent implements OnInit {
   ];
 
   usuariosFiltrado = this.usuariosOriginal;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -121,5 +122,9 @@ export class ListadoComponent implements OnInit {
         this.usuariosFiltrado.push(usuario);
       }
     }
+  }
+
+  irDetalleUsuario(id: number) {
+    this.router.navigate(['/usuarios', id]);
   }
 }

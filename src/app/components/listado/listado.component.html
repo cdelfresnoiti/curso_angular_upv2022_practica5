@@ -18,10 +18,16 @@
           {{ usuario.email }}
         </p>
         <a
-          href="#"
           class="btn"
+          [routerLink]="['/usuarios', usuario.id]"
           [ngClass]="esPar ? 'btn-primary' : 'btn-success'"
-          >Go somewhere</a
+          >Detalle HTML</a
+        >
+        <a
+          class="btn"
+          (click)="irDetalleUsuario(usuario.id)"
+          [ngClass]="esImpar ? 'btn-primary' : 'btn-success'"
+          >Detalle TS</a
         >
       </div>
     </div>
