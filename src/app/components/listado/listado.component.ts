@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ResultadoBusqueda } from 'src/app/models/resultado-busqueda';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-listado',
@@ -19,8 +22,8 @@ export class ListadoComponent implements OnInit {
     this.filtrar();
   }
 
-  usuariosOriginal: any[];
-  usuariosFiltrado: any[];
+  usuariosOriginal: Usuario[];
+  usuariosFiltrado: Usuario[];
 
   constructor(private router: Router, private httpClient: HttpClient) {
     this.usuariosOriginal = [];
@@ -28,23 +31,42 @@ export class ListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsuarios();
+    this.getUsuarios1();
+
+    // this.getUsuarios2().subscribe({
+    //   next: (result) => {
+    //     console.log(result);
+    //     this.usuariosOriginal = result.data;
+    //     this.usuariosFiltrado = this.usuariosOriginal;
+    //   },
+    //   error: (v) => {
+    //     console.log(v);
+    //   },
+    // });
   }
 
-  getUsuarios() {
-    this.httpClient.get('https://reqres.in/api/users?page=2').subscribe({
-      next: (result: any) => {
-        console.log(result);
-        this.usuariosOriginal = result.data;
-        this.usuariosFiltrado = this.usuariosOriginal;
-      },
-      error: (v) => {
-        console.log(v);
-      },
-    });
+  getUsuarios1(): void {
+    this.httpClient
+      .get<ResultadoBusqueda>('https://reqres.in/api/users?page=2')
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+          this.usuariosOriginal = result.data;
+          this.usuariosFiltrado = this.usuariosOriginal;
+        },
+        error: (v) => {
+          console.log(v);
+        },
+      });
   }
 
-  filtrar() {
+  getUsuarios2(): Observable<ResultadoBusqueda> {
+    return this.httpClient.get<ResultadoBusqueda>(
+      'https://reqres.in/api/users?page=2'
+    );
+  }
+
+  filtrar(): void {
     this.usuariosFiltrado = [];
 
     for (const usuario of this.usuariosOriginal) {
