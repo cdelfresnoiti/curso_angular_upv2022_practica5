@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ResultadoBusqueda } from 'src/app/models/resultado-busqueda';
 import { Usuario } from 'src/app/models/usuario';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-listado',
@@ -11,6 +12,18 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./listado.component.css'],
 })
 export class ListadoComponent implements OnInit {
+  usuariosOriginal: Usuario[];
+  usuariosFiltrado: Usuario[];
+
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private usuariosService: UsuariosService
+  ) {
+    this.usuariosOriginal = [];
+    this.usuariosFiltrado = [];
+  }
+
   _termino = '';
 
   @Input() get termino(): string {
@@ -22,27 +35,21 @@ export class ListadoComponent implements OnInit {
     this.filtrar();
   }
 
-  usuariosOriginal: Usuario[];
-  usuariosFiltrado: Usuario[];
-
-  constructor(private router: Router, private httpClient: HttpClient) {
-    this.usuariosOriginal = [];
-    this.usuariosFiltrado = [];
+  ngOnInit(): void {
+    this.getUsuarios3();
   }
 
-  ngOnInit(): void {
-    this.getUsuarios1();
-
-    // this.getUsuarios2().subscribe({
-    //   next: (result) => {
-    //     console.log(result);
-    //     this.usuariosOriginal = result.data;
-    //     this.usuariosFiltrado = this.usuariosOriginal;
-    //   },
-    //   error: (v) => {
-    //     console.log(v);
-    //   },
-    // });
+  getUsuarios3(): void {
+    this.usuariosService.getUsuariosObservable().subscribe({
+      next: (result) => {
+        console.log(result);
+        this.usuariosOriginal = result.data;
+        this.usuariosFiltrado = this.usuariosOriginal;
+      },
+      error: (v) => {
+        console.log(v);
+      },
+    });
   }
 
   getUsuarios1(): void {
