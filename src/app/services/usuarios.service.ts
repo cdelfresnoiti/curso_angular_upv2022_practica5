@@ -10,8 +10,6 @@ export class UsuariosService {
   constructor(private httpClient: HttpClient) {}
 
   getUsuariosObservable(): Observable<ResultadoBusqueda> {
-    return this.httpClient.get<ResultadoBusqueda>(
-      'https://reqres.in/api/users?page=2'
-    );
+    return this.httpClient.get<ResultadoBusqueda>('users?page=2');
   }
 }
