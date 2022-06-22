@@ -19,6 +19,22 @@
             >Listado de usuarios</a
           >
         </li>
+        <li class="nav-item">
+          <button
+            class="btn btn-warning"
+            *ngIf="autenticado"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+          <button
+            class="btn btn-warning"
+            *ngIf="!autenticado"
+            (click)="login()"
+          >
+            Login
+          </button>
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input

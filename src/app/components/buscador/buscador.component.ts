@@ -17,6 +17,8 @@ export class BuscadorComponent implements OnInit {
     this.buscar();
   }
 
+  autenticado = false;
+
   constructor() {}
 
   @Output() buscadorEvent = new EventEmitter<string>();
@@ -25,5 +27,15 @@ export class BuscadorComponent implements OnInit {
 
   buscar() {
     this.buscadorEvent.emit(this.termino);
+  }
+
+  login() {
+    localStorage.setItem('autenticado', 'true');
+    this.autenticado = true;
+  }
+
+  logout() {
+    localStorage.setItem('autenticado', 'false');
+    this.autenticado = false;
   }
 }

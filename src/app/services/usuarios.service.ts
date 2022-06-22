@@ -12,4 +12,13 @@ export class UsuariosService {
   getUsuariosObservable(): Observable<ResultadoBusqueda> {
     return this.httpClient.get<ResultadoBusqueda>('users?page=2');
   }
+
+  isLogged(): boolean {
+    const autenticado = localStorage.getItem('autenticado') ?? '';
+    if (autenticado === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
