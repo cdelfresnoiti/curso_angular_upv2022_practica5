@@ -9,6 +9,7 @@ import { ListadoComponent } from './components/listado/listado.component';
 import { DetalleUsuarioComponent } from './components/detalle-usuario/detalle-usuario.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NuevoUsuarioComponent } from './components/nuevo-usuario/nuevo-usuario.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BuscadorComponent,
     ListadoComponent,
     DetalleUsuarioComponent,
+    NuevoUsuarioComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [
