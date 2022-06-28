@@ -19,15 +19,9 @@
         </p>
         <a
           class="btn"
-          [routerLink]="['/usuarios', usuario.id]"
+          [routerLink]="['/usuarios', usuario.id, 'editar']"
           [ngClass]="esPar ? 'btn-primary' : 'btn-success'"
-          >Detalle HTML</a
-        >
-        <a
-          class="btn"
-          (click)="irDetalleUsuario(usuario.id)"
-          [ngClass]="esImpar ? 'btn-primary' : 'btn-success'"
-          >Detalle TS</a
+          >Editar</a
         >
       </div>
     </div>

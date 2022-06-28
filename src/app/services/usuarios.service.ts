@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResultadoBusqueda } from '../models/resultado-busqueda';
+import { ResultadoBusquedaSingle } from '../models/resultado-busqueda-single';
 import { Usuario } from '../models/usuario';
 
 @Injectable({
@@ -16,6 +17,10 @@ export class UsuariosService {
 
   addNuevoUsuario(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>('users', usuario);
+  }
+
+  getUser(id: number): Observable<ResultadoBusquedaSingle> {
+    return this.httpClient.get<ResultadoBusquedaSingle>('users/' + id);
   }
 
   isLogged(): boolean {

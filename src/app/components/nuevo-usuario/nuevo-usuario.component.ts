@@ -9,6 +9,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class NuevoUsuarioComponent implements OnInit {
   nuevo: Usuario = new Usuario();
+
   resultadoAdd: Usuario = new Usuario();
 
   constructor(private usuariosService: UsuariosService) {}
